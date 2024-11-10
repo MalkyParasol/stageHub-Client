@@ -31,7 +31,7 @@ import MenuItem from '@mui/material/MenuItem';
 import logo from '../../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { Role } from '../../enums/role.enum';
-
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
@@ -40,12 +40,10 @@ const pages =
  {name: 'אודות', path:"/about"}];
 const settings = ['מנהל', 'מפיק', 'מאמן', 'שחקן', 'ספק'];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({userName, onLogout}) {
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
-  const userName = localStorage.getItem("userName");
  
   const navigate = useNavigate();
 
@@ -202,8 +200,11 @@ function ResponsiveAppBar() {
           </Box>
           <Box sx={{ flexGrow: 0.05 }}>
           <Typography variant="h6">
-            { userName == null ? "":`שלום ${userName}`} {/* מציג את השם אם יש, אחרת "אורח" */}
+            { userName  ?`שלום ${userName}`:""} {/* מציג את השם אם יש, אחרת "אורח" */}
           </Typography>
+          
+          <Button onClick={onLogout} variant="text">ליציאה <LogoutIcon/></Button>
+        
         </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="כניסה">

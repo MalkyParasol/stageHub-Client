@@ -19,7 +19,7 @@ const FormContainer = styled(Container)({
     width: '100%',
     maxWidth: '400px',
   });
-const SignIn: React.FC  = () => {
+const SignIn: React.FC  = ({ onLogin }) => {
     
     const { role } = useParams();
 
@@ -41,7 +41,8 @@ const SignIn: React.FC  = () => {
             }
           });
         //onNameUpdate(details.data.name);
-        localStorage.setItem("userName",details.data.name);
+       // localStorage.setItem("userName",details.data.name);
+       onLogin(details.data.name);
       } catch (error) {
         console.error('Error login:', error); // הדפסת שגיאה אם יש
         alert('אירעה שגיאה בהתחברות .'); // הודעת שגיאה
