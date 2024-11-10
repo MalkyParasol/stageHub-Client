@@ -29,9 +29,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../../assets/logo.png';
-import { json, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Role } from '../../enums/role.enum';
-import axios from 'axios';
+
 
 
 
@@ -40,12 +40,13 @@ const pages =
  {name: 'אודות', path:"/about"}];
 const settings = ['מנהל', 'מפיק', 'מאמן', 'שחקן', 'ספק'];
 
-function ResponsiveAppBar({userName}) {
+function ResponsiveAppBar() {
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-
+  const userName = localStorage.getItem("userName");
+ 
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -185,11 +186,7 @@ function ResponsiveAppBar({userName}) {
           >
             LOGO
           </Typography> */}
-          <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="h6">
-            { userName == "" ? "":`שלום ${userName}`} {/* מציג את השם אם יש, אחרת "אורח" */}
-          </Typography>
-        </Box>
+      
          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -203,6 +200,11 @@ function ResponsiveAppBar({userName}) {
               </Button>
             ))}
           </Box>
+          <Box sx={{ flexGrow: 0.05 }}>
+          <Typography variant="h6">
+            { userName == null ? "":`שלום ${userName}`} {/* מציג את השם אם יש, אחרת "אורח" */}
+          </Typography>
+        </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="כניסה">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

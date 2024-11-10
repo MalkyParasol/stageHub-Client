@@ -19,7 +19,7 @@ const FormContainer = styled(Container)({
     width: '100%',
     maxWidth: '400px',
   });
-const SignIn: React.FC  = ({onNameUpdate}) => {
+const SignIn: React.FC  = () => {
     
     const { role } = useParams();
 
@@ -32,16 +32,16 @@ const SignIn: React.FC  = ({onNameUpdate}) => {
     // Handle login logic here
     try {
         const res = await axios.post(`http://localhost:3001/login/${Role[role]}`, { email, password });
-        console.log(res.data);
         localStorage.setItem("token",res.data.token);
         localStorage.setItem("id",res.data.id);
 
-        const details = await axios.get(`http://localhost:3001/details/${res.data.id}/` , {
+        const details = await axios.get(`http://localhost:3001/${Role[role]}/details/${res.data.id}/` , {
             headers: {
               'auth-token': res.data.token 
             }
           });
-        onNameUpdate(details.data.name);
+        //onNameUpdate(details.data.name);
+        localStorage.setItem("userName",details.data.name);
       } catch (error) {
         console.error('Error login:', error); // הדפסת שגיאה אם יש
         alert('אירעה שגיאה בהתחברות .'); // הודעת שגיאה
