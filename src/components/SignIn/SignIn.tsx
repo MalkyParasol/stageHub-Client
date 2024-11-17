@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Role } from '../../enums/role.enum';
 import React, { useState } from 'react';
 import { Container, TextField, Button, Box, Typography } from '@mui/material';
@@ -23,7 +23,8 @@ const SignIn: React.FC  = ({ onLogin }) => {
     
     const { role } = useParams();
 
-   
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -31,18 +32,19 @@ const SignIn: React.FC  = ({ onLogin }) => {
     event.preventDefault();
     // Handle login logic here
     try {
-        const res = await axios.post(`http://localhost:3001/login/${Role[role]}`, { email, password });
+        const res = await axios.post(`http://localhost:3001/login/${role}`, { email, password });
         localStorage.setItem("token",res.data.token);
         localStorage.setItem("id",res.data.id);
 
-        const details = await axios.get(`http://localhost:3001/${Role[role]}/details/${res.data.id}/` , {
+        const details = await axios.get(`http://localhost:3001/${role}/details/${res.data.id}/` , {
             headers: {
               'auth-token': res.data.token 
             }
           });
         //onNameUpdate(details.data.name);
        // localStorage.setItem("userName",details.data.name);
-       onLogin(details.data.name);
+       onLogin(details.data.name,role);
+       navigate(`/${role}`)
       } catch (error) {
         console.error('Error login:', error); // הדפסת שגיאה אם יש
         alert('אירעה שגיאה בהתחברות .'); // הודעת שגיאה
@@ -54,7 +56,7 @@ const SignIn: React.FC  = ({ onLogin }) => {
     
     <FormContainer>
 
-<h1>{role ? Role[role as keyof typeof Role] : "Unknown Role"}</h1>
+<h1>{role}</h1>
 
         {/* <h1>Hello {Role[role]}!🤗</h1> */}
       {/* <Typography variant="h4" gutterBottom>

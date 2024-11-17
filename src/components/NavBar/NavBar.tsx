@@ -86,7 +86,7 @@ function ResponsiveAppBar({userName, onLogout}) {
     //סוגר את התפריט בעת לחיצה
     setAnchorElUser(null);
 
-    navigate(`/signin/${role}`);
+    navigate(`/signin/${Role[role]}`);
   }
 
  
@@ -203,7 +203,12 @@ function ResponsiveAppBar({userName, onLogout}) {
             { userName  ?`שלום ${userName}`:""} {/* מציג את השם אם יש, אחרת "אורח" */}
           </Typography>
           
-          <Button onClick={onLogout} variant="text">ליציאה <LogoutIcon/></Button>
+          {userName !== "" && (
+          <Button onClick={onLogout} variant="text">ליציאה
+          <LogoutIcon />
+          </Button>
+          )}
+         
         
         </Box>
           <Box sx={{ flexGrow: 0 }}>
