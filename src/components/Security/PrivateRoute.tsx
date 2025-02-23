@@ -4,6 +4,7 @@ const PrivateRoute = () => {
 
   const location = useLocation();
   const role = location.pathname.split('/')[1]; // מוציא את החלק הראשון אחרי ה"/"
+
   if (!localStorage.getItem('userName') || localStorage.getItem('userRole') != role) {
     
       return <Navigate to={`/signin/${role}`} state={{ from: location }} />;

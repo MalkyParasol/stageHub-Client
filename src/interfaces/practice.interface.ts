@@ -3,4 +3,7 @@ export interface Practice {
     directorId: String
     coachId: String;
     actorsId: [String];
+    startHour: String;
+    endHour: String;
+    location: String;
 }

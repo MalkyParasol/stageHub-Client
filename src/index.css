@@ -1,4 +1,9 @@
-:root {
+html, body {
+  direction: rtl !important;
+  text-align: right;
+  font-family: "Arial", sans-serif; /* Optional: Adjust font */
+}
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +70,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

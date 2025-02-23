@@ -36,6 +36,7 @@ function App() {
     localStorage.removeItem('userName');
     localStorage.removeItem('token');
     localStorage.removeItem('id');
+    localStorage.removeItem('userRole');
     setUserName('');
     navigate('/')
   }
