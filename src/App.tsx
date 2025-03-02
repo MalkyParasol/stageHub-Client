@@ -11,9 +11,20 @@ import ProviderDashboard from "./components/Dashboard/ProviderDashboard"
 import CoachDashboard from "./components/Dashboard/CoachDashboard"
 import ActorDashboard from "./components/Dashboard/ActorDashboard"
 import PrivateRoute from "./components/Security/PrivateRoute"
+import Dairy from "./components/Dairy/Dairy"
 
 
 function App() {
+
+  const userRole = localStorage.getItem('userRole');
+  
+  
+  
+  const pages = 
+  [{name:'בית', path:'/'},
+   {name: 'אודות', path:"/about"},
+  ];
+  
 
   const navigate = useNavigate()
   
@@ -30,7 +41,9 @@ function App() {
     localStorage.setItem('userName', name);  
     localStorage.setItem('userRole',role);
     setUserName(name);  
+    navigate(`/${userRole}/dairy`);
   };
+
 
   const handleLogout = () => {
     localStorage.removeItem('userName');
@@ -38,12 +51,12 @@ function App() {
     localStorage.removeItem('id');
     localStorage.removeItem('userRole');
     setUserName('');
-    navigate('/')
+    navigate('/');
   }
 
   return (
     <>
-    <NavBar userName={userName} onLogout={handleLogout}/>
+    <NavBar userName={userName} onLogout={handleLogout} pages={pages} />
      {/* <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/signin/:role" element={<SignIn onLogin={handleLogin} />}/>
@@ -61,13 +74,16 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
         
-        {/* Protect the dashboard routes */}
+
         <Route element={<PrivateRoute  />}>
-          <Route path="/manager" element={<ManagerDashboard />} />
+          <Route path="/manager" element={<ManagerDashboard />} /> 
           <Route path="/director" element={<DirectorDashboard />} />
+          <Route path="/director/dairy" element={<Dairy />} />
           <Route path="/provider" element={<ProviderDashboard />} />
           <Route path="/coach" element={<CoachDashboard />} />
+          <Route path="/coach/dairy" element={<Dairy />} />
           <Route path="/actor" element={<ActorDashboard />} />
+          <Route path="/actor/dairy" element={<Dairy />} />
         </Route>
 
 

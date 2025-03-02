@@ -1,7 +1,7 @@
-import DateCalendarServerRequest from "../MeetingCalander/MeetingCalander"
+import Dairy from "../Dairy/Dairy"
 const ActorDashboard =()=>{
     return<>
-      <DateCalendarServerRequest/>
+      {/* <Dairy/> */}
     </>
 }
 export default ActorDashboard

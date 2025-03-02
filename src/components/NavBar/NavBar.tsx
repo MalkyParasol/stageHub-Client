@@ -35,12 +35,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
-const pages = 
-[{name:'בית', path:'/'},
- {name: 'אודות', path:"/about"}];
-const settings = ['מנהל', 'מפיק', 'מאמן', 'שחקן', 'ספק'];
+const loginOptions = ['מנהל', 'מפיק', 'מאמן', 'שחקן', 'ספק'];
+const userMenue= ['איזור אישי', 'התנתקות'];
 
-function ResponsiveAppBar({userName, onLogout}) {
+
+function ResponsiveAppBar({userName, onLogout, pages}) {
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -63,10 +62,10 @@ function ResponsiveAppBar({userName, onLogout}) {
     setAnchorElUser(null);
   };
 
-  function navigateToSignin(setting: string): void {
+  function navigateToSignin(loginOption: string): void {
     
     let role:any;
-    switch (setting) {
+    switch (loginOption) {
       case "מאמן":
         role = Role.Coach;
         break;
@@ -87,6 +86,17 @@ function ResponsiveAppBar({userName, onLogout}) {
     setAnchorElUser(null);
 
     navigate(`/signin/${Role[role]}`);
+  }
+
+
+  const navigateToPersonalArea = (userMenueOpt:string) => {
+
+    if(userMenueOpt === 'התנתקות')
+      onLogout();
+    else
+      navigate(`/${localStorage.getItem('userRole')}`);
+
+    console.log(userMenueOpt);
   }
 
  
@@ -202,12 +212,6 @@ function ResponsiveAppBar({userName, onLogout}) {
           <Typography variant="h6">
             { userName  ?`שלום ${userName}`:""} {/* מציג את השם אם יש, אחרת "אורח" */}
           </Typography>
-          
-          {userName !== "" && (
-          <Button onClick={onLogout} variant="text">ליציאה
-          <LogoutIcon />
-          </Button>
-          )}
          
         
         </Box>
@@ -233,11 +237,17 @@ function ResponsiveAppBar({userName, onLogout}) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={() => navigateToSignin(setting)}>
-                  <Typography sx={{ textAlign: 'center' }}>{`כניסה כ${setting}`}</Typography>
+              {localStorage.getItem('id')?userMenue.map((userMenueOpt) => (
+                <MenuItem key={userMenueOpt} onClick={() => navigateToPersonalArea(userMenueOpt)}>
+                  <Typography sx={{ textAlign: 'center' }}>{userMenueOpt}</Typography>
                 </MenuItem>
-              ))}
+              )): loginOptions.map((loginOption) => (
+                <MenuItem key={loginOption} onClick={() => navigateToSignin(loginOption)}>
+                  <Typography sx={{ textAlign: 'center' }}>{`כניסה כ${loginOption}`}</Typography>
+                </MenuItem>
+              ))
+              }
+
             </Menu>
           </Box>
         </Toolbar>
