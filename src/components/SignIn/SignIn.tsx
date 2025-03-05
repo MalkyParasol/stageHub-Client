@@ -43,6 +43,7 @@ const SignIn: React.FC  = ({ onLogin }) => {
           });
         //onNameUpdate(details.data.name);
        // localStorage.setItem("userName",details.data.name);
+       localStorage.setItem('userDetails',JSON.stringify(details.data));
        onLogin(details.data.name,role);
        navigate(`/${role}`)
       } catch (error) {

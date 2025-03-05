@@ -1,11 +1,11 @@
 import { Specialization } from "../enums/specialization.enum";
 
 export interface Actor {
-    name:String;
+    name:string;
     role:Specialization;
-    coachId:String;
-    directorId:String;
-    phone:String;
-    email:String;
-    password:String;
+    coachId:string;
+    directorId:string;
+    phone:string;
+    email:string;
+    password:string;
 }

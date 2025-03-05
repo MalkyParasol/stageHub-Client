@@ -1,9 +1,9 @@
 export interface Practice {
     date: Date;
-    directorId: String
-    coachId: String;
-    actorsId: [String];
-    startHour: String;
-    endHour: String;
-    location: String;
+    directorId: string
+    coachId: string;
+    actorsId: [string];
+    startHour: string;
+    endHour: string;
+    location: string;
 }

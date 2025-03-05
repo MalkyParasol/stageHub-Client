@@ -1,9 +1,9 @@
 export interface Actor {
-    name:String;
-    role:String;
-    coachId:String;
-    directorId:String;
-    phone:String;
-    email:String;
-    password:String;
+    name:string;
+    role:string;
+    coachId:string;
+    directorId:string;
+    phone:string;
+    email:string;
+    password:string;
 }

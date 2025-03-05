@@ -1,8 +1,8 @@
 export interface Director {
 
-    name: String;
-    phone: String;
-    email: String;
-    password: String;
-    publicPassword: String;
+    name: string;
+    phone: string;
+    email: string;
+    password: string;
+    publicPassword: string;
 }

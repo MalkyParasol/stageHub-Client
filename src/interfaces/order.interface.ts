@@ -1,10 +1,10 @@
 export interface Order {
 
-    name: String;
-    phone: String;
-    email: String;
+    name: string;
+    phone: string;
+    email: string;
     amount: Number;
-    showId: String;
-    qrCode: String;
-    pdf: String;
+    showId: string;
+    qrCode: string;
+    pdf: string;
 }

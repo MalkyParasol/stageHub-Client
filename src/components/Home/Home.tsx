@@ -2,9 +2,10 @@ import { Grid } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import EventCard from '../../components/show/cardShow';
+import { Show } from '../../interfaces/show.interface';
 
 const Home  = () => {
-    const [shows, setShows] = useState([]); // מצב עבור המופעים
+    const [shows, setShows] = useState<Show[]>([]); // מצב עבור המופעים
     const [hovered, setHovered] = useState(null); // מצב לניהול הכרטיס שהועבר מעליו
   
     useEffect(() => {
@@ -33,7 +34,7 @@ const Home  = () => {
   
     return (
         <Grid container spacing={1} justifyContent="center" sx={{ padding: 2 }}>
-        {shows.map((event) => (
+        {shows.map((event:Show) => (
           <Grid item xs={12} sm={6} md={4} key={event.id}>
             <EventCard
               name={event.name}

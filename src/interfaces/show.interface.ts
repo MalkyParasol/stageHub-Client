@@ -1,8 +1,9 @@
 export interface Show {
-    name: String;
+    id: string;
+    name: string;
     date: Date;
-    location: String;
+    location: string;
     price: Number;
     numAvailableTickets: Number;
-    directorId :String;
+    directorId :string;
 }

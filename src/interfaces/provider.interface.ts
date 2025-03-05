@@ -1,8 +1,8 @@
 export interface Provider {
-    name:String;
-    phone:String;
-    email:String;
-    product:String;
+    name:string;
+    phone:string;
+    email:string;
+    product:string;
     price:Number;
-    password:String;
+    password:string;
 }
