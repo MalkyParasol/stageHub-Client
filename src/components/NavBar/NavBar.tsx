@@ -210,7 +210,7 @@ function ResponsiveAppBar({userName, onLogout, pages}) {
           </Box>
           <Box sx={{ flexGrow: 0.05 }}>
           <Typography variant="h6">
-            { userName  ?`שלום ${userName}`:""} {/* מציג את השם אם יש, אחרת "אורח" */}
+            { userName  ?`שלום, ${userName}`:""} {/* מציג את השם אם יש, אחרת "אורח" */}
           </Typography>
          
         

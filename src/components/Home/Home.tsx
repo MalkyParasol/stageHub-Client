@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import EventCard from '../../components/show/cardShow';
-import { Show } from '../../interfaces/show.interface';
+import { Show } from '../../types/show';
 
 const Home  = () => {
     const [shows, setShows] = useState<Show[]>([]); // מצב עבור המופעים
