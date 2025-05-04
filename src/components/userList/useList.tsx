@@ -4,6 +4,7 @@ import { Grid, Card, CardHeader, CardContent, Typography, CircularProgress } fro
 
 const UserList = ({ roleList }) => {
 
+  const roleUser = localStorage.getItem('userRole');
 const [data, setData] = useState([]);
   const [actors, setActors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,22 +13,23 @@ const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(`http://localhost:3001/${localStorage.getItem('userRole')}/${roleList}`);
+        console.log(`http://localhost:3001/${roleUser}/${roleList}`);
         
-        const response = await axios.get(`http://localhost:3001/${localStorage.getItem(userRole)}/${roleList}`, {
+        const response = await axios.get(`http://localhost:3001/${roleUser}/${roleList}`, {
           headers: {
             'auth-token': localStorage.getItem('token'),
           },
         });
-        console.log(response.data);
         setData(response.data);
+        setLoading(false);
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
   
     fetchData();
-  }, [localStorage.getItem('userRole'), roleList]);
+  }, [ roleList]);
   
   if (loading) {
     return <CircularProgress />;
@@ -42,7 +44,7 @@ const [data, setData] = useState([]);
       {data.map((item, index) => (
         <Grid item xs={12} sm={6} md={4} key={index}>
           <Card sx={{ borderRadius: 2, boxShadow: 3 }}>
-          <CardHeader title={item.name} subheader={`תפקיד: ${item.role}`} />
+            <CardHeader title={item.name} subheader={`תפקיד: ${item.role}`} />
             <CardContent>
               <Typography variant="body1">
                 <strong>מנהל:</strong> {item.managerId}
